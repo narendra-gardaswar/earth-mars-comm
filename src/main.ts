@@ -9,6 +9,7 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
   const logger = app.get(Logger);
   const port = configService.get<number>(EnvironmentVariable.PORT) || 3000;
+  app.setGlobalPrefix('api');
   await app.listen(port, () => {
     logger.log(`http://localhost:${port}`);
   });
