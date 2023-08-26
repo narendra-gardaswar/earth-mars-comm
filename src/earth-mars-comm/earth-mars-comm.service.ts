@@ -65,6 +65,7 @@ export class EarthMarsCommService {
     while (i < str.length) {
       if (str[i] === '.') {
         i++;
+        result += ' ';
         continue;
       }
 
@@ -105,7 +106,7 @@ export class EarthMarsCommService {
     const n = message.length;
     for (let i = 0; i < n; i++) {
       if (message[i] === ' ') {
-        output += '0';
+        output += '.';
       } else {
         const charCode = message[i].toUpperCase().charCodeAt(0);
         if (charCode >= 65 && charCode <= 90) {
