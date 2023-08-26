@@ -37,7 +37,7 @@ export class EarthMarsCommService {
   }
 
   validateMessage(message: string, sender: MessageFrom): void {
-    const nonDigitPattern = /\D/;
+    const nonDigitPattern = /[^\d.]/;
 
     const isNumeric = !nonDigitPattern.test(message);
     const isString = nonDigitPattern.test(message);
@@ -96,7 +96,7 @@ export class EarthMarsCommService {
       }
       i++;
     }
-    this.logger.log(result);
+
     return result.toLowerCase();
   }
 
