@@ -11,6 +11,7 @@ export class EarthMarsCommController {
 
   @Post('/message')
   sendMessage(@Body() body: SendMessageDTO, @Req() req: Request): string {
+    console.log(req['sender']);
     return this.earthMarsCommService.sendMessage(body.message, req);
   }
 }

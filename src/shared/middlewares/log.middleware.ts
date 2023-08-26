@@ -9,6 +9,9 @@ export class LogMiddleware implements NestMiddleware {
     const receiver = req.header('x-receiver');
 
     if (sender && receiver) {
+      req['sender'] = sender;
+      req['receiver'] = receiver;
+
       this.logger.debug(`Message from ${sender} to ${receiver}`);
     }
 

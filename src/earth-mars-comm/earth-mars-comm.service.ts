@@ -13,8 +13,8 @@ export class EarthMarsCommService {
   constructor() {}
 
   sendMessage(message: string, req: Request): string {
-    const sender = req.header('x-sender') as MessageFrom;
-    const receiver = req.header('x-receiver') as MessageFrom;
+    const sender = req['sender'] as MessageFrom;
+    const receiver = req['receiver'] as MessageFrom;
 
     //validate the proper message from the sender
     this.validateMessage(message, sender);
