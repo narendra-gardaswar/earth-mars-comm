@@ -3,6 +3,7 @@ import {
   NestInterceptor,
   ExecutionContext,
   CallHandler,
+  HttpStatus,
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -20,6 +21,7 @@ export class MessageResponseInterceptor implements NestInterceptor {
     next: CallHandler,
   ): Observable<MessageResponse> {
     const request = context.switchToHttp().getRequest();
+    const response = context.switchToHttp().getResponse();
     const sender = request['sender'];
 
     return next.handle().pipe(
@@ -32,6 +34,7 @@ export class MessageResponseInterceptor implements NestInterceptor {
           responseObject.responseFromMars = request.body.message;
         }
         responseObject.nokiaTranslation = data;
+        response.status(HttpStatus.OK);
         return responseObject;
       }),
     );
